@@ -4,7 +4,7 @@
 # DRY up all the code below - there shouldn't be a single method duplicated between
 # any two classes.
 
-class SimpleCalculator
+module SimpleCalculator
 
   def add(first_number, second_number)
     first_number + second_number
@@ -25,22 +25,7 @@ class SimpleCalculator
 end
 
 class FancyCalculator
-
-  def add(first_number, second_number)
-    first_number + second_number
-  end
-
-  def subtract(first_number, second_number)
-    first_number - second_number
-  end
-
-  def multiply(first_number, second_number)
-    first_number * second_number
-  end
-
-  def divide(first_number, second_number)
-    first_number / second_number
-  end
+  include SimpleCalculator
 
   def square_root(number)
     Math.sqrt(number)
@@ -48,27 +33,7 @@ class FancyCalculator
 
 end
 
-class WhizBangCalculator
-
-  def add(first_number, second_number)
-    first_number + second_number
-  end
-
-  def subtract(first_number, second_number)
-    first_number - second_number
-  end
-
-  def multiply(first_number, second_number)
-    first_number * second_number
-  end
-
-  def divide(first_number, second_number)
-    first_number / second_number
-  end
-
-  def square_root(number)
-    Math.sqrt(number)
-  end
+class WhizBangCalculator < FancyCalculator
 
   def hypotenuse(first_number, second_number)
     Math.hypot(first_number, second_number)
@@ -83,4 +48,12 @@ class WhizBangCalculator
 end
 
 # Copy your driver code from the previous exercise and more below:
+problem = WhizBangCalculator.new
+puts problem.subtract(8, 9)
+puts problem.multiply(1, 2)
+puts problem.divide(8, 2)
+puts problem.add(3, 10)
+puts problem.square_root(9)
+puts problem.hypotenuse(4, 7)
+puts problem.exponent(5, 3)
 
